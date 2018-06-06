@@ -1,0 +1,107 @@
+﻿@model ContactInformation.MVC.Models.CustomerViewModel
+
+@{
+    ViewBag.Title = "Customer Details";
+}
+
+<h2>Customer Details</h2>
+
+<div>
+    <h4>Customer Details with Contacts</h4>
+    <hr />
+    <table style="width:50%">
+        <tr>
+            <td>@Html.Label("Customer Id")</td>
+            <td>@Html.DisplayFor(model => model.CustomerId)</td>
+        </tr>
+        <tr>
+            <td>@Html.Label("First Name")</td>
+            <td>@Html.DisplayFor(model => model.FirstName)</td>
+        </tr>
+        <tr>
+            <td>@Html.Label("Last Name")</td>
+            <td>@Html.DisplayFor(model => model.LastName)</td>
+        </tr>
+    </table>
+    <br />
+
+    @*<dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.CustomerId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CustomerId)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+        </dl>*@
+</div>
+<h4>Customer Contacts</h4>
+
+@Html.ActionLink("Create New", "Create", "CustomerContact", new { customerId = Model.CustomerId }, new { })
+
+
+<div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Id")
+            </th>
+            @*<th>
+                    @Html.DisplayName("Customer")
+                </th>*@
+            <th>
+                @Html.DisplayName("Conatct Type")
+            </th>
+            <th>
+                @Html.DisplayName("Contact Value")
+            </th>
+            <th>
+                @Html.DisplayName("Status")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.CustomerContacts)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CutsomerContactId)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => item.CustomerId)
+                    @Html.HiddenFor(modelItem => item.ContactTypeId)
+                    @Html.DisplayFor(modelItem => item.ContactTypeText)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactValue)
+                </td>
+                <td>@Html.DisplayFor(modelItem=>item.ContactStatus)</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "CustomerContact", new { id = item.CutsomerContactId }, new { }) |
+                    @*@Html.ActionLink("Details", "Details", new { id = item.CutsomerContactId }) |*@
+                    @Html.ActionLink("Delete", "Delete", "CustomerContact", new { id = item.CutsomerContactId }, new { })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CustomerId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

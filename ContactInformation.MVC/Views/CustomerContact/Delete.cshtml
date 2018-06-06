@@ -1,0 +1,82 @@
+﻿@model ContactInformation.MVC.Models.CustomerContactViewModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete Customer Contact</h2>
+
+<h3>Are you sure you want to delete this contact?</h3>
+<div>
+    <br />
+    <h4>Contact Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Id")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CutsomerContactId)
+        </dd>
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.CustomerId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CustomerId)
+            </dd>*@
+
+        <dt>
+            @Html.DisplayName("Customer Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerName)
+        </dd>
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.ContactTypeId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ContactTypeId)
+            </dd>*@
+
+        <dt>
+            @Html.DisplayName("Contact Type")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactTypeText)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Contact Value")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Contact Status")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactStatus)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(x=>x.CustomerId)
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Details", "Customer", new { id = Model.CustomerId }, new { })
+        </div>
+    }
+</div>
